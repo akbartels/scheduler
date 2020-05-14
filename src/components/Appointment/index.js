@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import "components/Appointment/styles.scss";
 import Header from "components/Appointment/Header";
@@ -9,23 +9,19 @@ export default function Appointment(props) {
   console.log("PROPS:", props)
 
   return (
-    <>
-      <Header time={props.time}></Header>
-      
-
-       { props.interviewer ? 
-        <Show 
-          student={props.interviewer.student}
-          interviewer={props.interviewer.interviewer.name}
-        /> : 
-        <Empty 
-        
-        /> 
-       }
-      
-    
+ 
       <article className="appointment">
+        <Header time={props.time}></Header>
+        { props.interview ? 
+          (<Show 
+            student={props.interview.student}
+            interviewer={props.interview.interviewer.name}
+          />) : 
+          (<Empty 
+          
+          /> )
+        }
       </article>
-    </>
+  
   )
 }
