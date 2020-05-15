@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import axios from "axios";
 
 import Appointment from "components/Appointment/index";
 import DayList from "components/DayList";
@@ -107,7 +109,6 @@ export default function Application(props) {
         {appointmentsList}
         <Appointment id="last" time="6pm" />
       </section>
-      
     </main>
   );
 }
