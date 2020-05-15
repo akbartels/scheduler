@@ -7,11 +7,10 @@ import Show from "components/Appointment/Show";
 
 export default function Appointment(props) {
   return (
- 
       <article className="appointment">
         <Header time={props.time}></Header>
         { props.interview ? 
-          (<Show 
+          (<Show
             student={props.interview.student}
             interviewer={props.interview.interviewer.name}
           />) : 
@@ -20,6 +19,5 @@ export default function Appointment(props) {
           /> )
         }
       </article>
-  
   )
 }
