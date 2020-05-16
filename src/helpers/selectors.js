@@ -14,7 +14,19 @@ export function getAppointmentsForDay(state, day) {
     dayName.appointments.map((appt) => {
       results.push(appts[appt]);
     })
+    
   };
-  
   return results;
+  
+};
+
+export function getInterview(state, interview) { 
+  if (!interview) {
+    return null;
+  }else {
+    const student = interview.student;
+    const interviewer = state.interviewers[interview.interviewer];
+    let interviews = { interviewer, student };
+    return interviews;
+  } 
 }
