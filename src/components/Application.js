@@ -1,11 +1,11 @@
 //EXTERNAL
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useImperativeHandle } from "react";
 import axios from "axios";
 
 //INTERNAL
 import Appointment from "components/Appointment/index";
 import DayList from "components/DayList";
-import {getAppointmentsForDay, getInterview} from "../helpers/selectors";
+import {getAppointmentsForDay, getInterview, getInterviewerForDay} from "../helpers/selectors";
 
 
 import "components/Application.scss";
@@ -32,13 +32,24 @@ export default function Application(props) {
   },[]);
 
   function bookInterview(id, interview) {
-    console.log(id, interview)
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({
+      ...state,
+      appointments
+    });
   };
 
   
 
   const appointments = getAppointmentsForDay(state, state.day);
-  
+  const interviewers = getInterviewerForDay(state, state.day)
   const appointmentsList = appointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
 
@@ -48,13 +59,10 @@ export default function Application(props) {
         id={appointment.id}
         time={appointment.time}
         interview={interview}
-        onBookInterview={bookInterview(appointment.id, appointment.interview)}
-        onSave={function save(name, interviewer) {
-          const interview = {
-            student: name,
-            interviewer
-          }
-        }}
+        interviewers={interviewers}
+        bookInterview={bookInterview}
+        
+        
         // {...appointment}
       />
     )

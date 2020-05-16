@@ -25,7 +25,7 @@ export function getInterview(state, interview) {
   }else {
     const student = interview.student;
     const interviewer = state.interviewers[interview.interviewer];
-    let interviews = { interviewer, student };
+    let interviews = { student, interviewer  };
     return interviews;
   } 
 };
