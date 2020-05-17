@@ -21,6 +21,7 @@ export default function Application(props) {
   const setDay = day => setState({ ...state, day });
 
   useEffect(() => {   
+    
     Promise.all([
       Promise.resolve(axios.get("http://localhost:8001/api/days")),
       Promise.resolve(axios.get("http://localhost:8001/api/appointments")),
@@ -40,10 +41,18 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({
-      ...state,
-      appointments
-    });
+
+    axios.put(`http://localhost:8001/api/appointments/${id}`, {
+      interview
+    })
+    .then(() => {
+      setState({
+        ...state,
+        appointments
+      });
+    })
+    
+    
   };
 
   
@@ -61,9 +70,6 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
-        
-        
-        // {...appointment}
       />
     )
   })
@@ -97,7 +103,6 @@ export default function Application(props) {
         <Appointment 
           id="last" 
           time="6pm" 
-          // bookInterview={bookInterview}
         />
       </section>
     </main>
