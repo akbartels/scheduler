@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import {getSpotsForDay} from "../helpers/selectors";
+
 export default function useApplicationData() {
   const [state, setState] = useState({
     day: "Monday",
@@ -11,6 +13,8 @@ export default function useApplicationData() {
   });
 
   const setDay = day => setState({ ...state, day });
+ 
+  
 
   useEffect(() => {
     Promise.all([
@@ -36,16 +40,22 @@ export default function useApplicationData() {
       interview
     })
     .then(() => {
+      const days = state.days.map(day => {
+        return{...day, spots: getSpotsForDay({...state, appointments}, day.name)}
+      })
       setState({
         ...state,
-        appointments
+        appointments,
+        days
       });
     })
+    
   };
 
   function cancelInterview(id) {
     const appointment = {
-      ...state.appointments[id]
+      ...state.appointments[id],
+      interview: null
     };
     const appointments = {
       ...state.appointments,
@@ -53,9 +63,13 @@ export default function useApplicationData() {
     };
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
     .then(() => {
+      const days = state.days.map(day => {
+        return{...day, spots: getSpotsForDay({...state, appointments}, day.name)}
+      })
       setState({
         ...state,
-        appointments
+        appointments,
+        days
       });
     });
   }; 
@@ -63,3 +77,8 @@ export default function useApplicationData() {
   return {state, setDay, bookInterview, cancelInterview}
   
 };
+
+//Spots is stored in DayList
+//Value should change upon save of interview
+//
+//45 mins

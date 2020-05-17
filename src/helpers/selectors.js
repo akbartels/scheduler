@@ -49,3 +49,9 @@ export function getInterviewerForDay(state, day) {
   return results;
 };
 
+export function getSpotsForDay(state, day) {
+  return getAppointmentsForDay(state, day).reduce((acc, curr) => {
+    return curr.interview === null ? ++acc : acc
+  }, 0)
+};
+
