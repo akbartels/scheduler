@@ -1,9 +1,9 @@
 //EXTERNAL
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {getSpotsForDay} from "../helpers/selectors";
 axios.defaults.baseURL = 'http://localhost:8001';
 
-import {getSpotsForDay} from "../helpers/selectors";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
