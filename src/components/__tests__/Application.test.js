@@ -20,6 +20,7 @@ import Application from "components/Application";
 import axios from "axios";
 
 afterEach(cleanup);
+
 describe("Application", () => {
   it("changes the schedule when a new day is selected", () => {
     const { getByText } = render(<Application />);
@@ -50,8 +51,7 @@ describe("Application", () => {
 
     await waitForElement(() => queryByText(appointment, "Lydia Miller-Jones"));
 
-    const day = getAllByTestId(container, "day").find(day => queryByText(day, "Monday")
-    );
+    const day = getAllByTestId(container, "day").find(day => queryByText(day, "Monday"));
 
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
  
@@ -62,7 +62,7 @@ describe("Application", () => {
 
     await waitForElement(() => getByText(container, "Archie Cohen"));
 
-    const appointment = getAllByTestId(container, "appointment").find( appointment => queryByText(appointment, "Archie Cohen"))
+    const appointment = getAllByTestId(container, "appointment").find( appointment => queryByText(appointment, "Archie Cohen"));
     
     fireEvent.click(getByAltText(appointment, "Delete"));
     
@@ -74,8 +74,8 @@ describe("Application", () => {
 
     await waitForElement(() => getByAltText(appointment, "Add"));
     
-    const day = getAllByTestId(container, "day").find(day => queryByText(day, "Monday")
-    );
+    const day = getAllByTestId(container, "day").find(day => queryByText(day, "Monday"));
+
     expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
 
@@ -97,8 +97,7 @@ describe("Application", () => {
 
     await waitForElement(() => queryByText(appointment, "Archie Cohen"));
 
-    const day = getAllByTestId(container, "day").find(day => queryByText(day, "Monday")
-    );
+    const day = getAllByTestId(container, "day").find(day => queryByText(day, "Monday"));
 
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
  
@@ -127,7 +126,6 @@ describe("Application", () => {
     .catch((error) => { return error })
     expect(getByText(appointment, "Error")).toBeInTheDocument();
     
-    
   });
 
   it("shows the delete error when failing to delete an existing appointment", async () => {
@@ -136,7 +134,7 @@ describe("Application", () => {
 
     await waitForElement(() => getByText(container, "Archie Cohen"));
 
-    const appointment = getAllByTestId(container, "appointment").find( appointment => queryByText(appointment, "Archie Cohen"))
+    const appointment = getAllByTestId(container, "appointment").find( appointment => queryByText(appointment, "Archie Cohen"));
     
     fireEvent.click(getByAltText(appointment, "Delete"));
     
@@ -147,11 +145,8 @@ describe("Application", () => {
     expect(getByText(appointment, "Deleting")).toBeInTheDocument();
 
     await waitForElement(() => getByAltText(appointment, "Add"))
-      .catch((error) => { return error })
+      .catch((error) => { return error });
     
       expect(getByText(appointment, "Error")).toBeInTheDocument();
-
- 
   });
-
-})
+});

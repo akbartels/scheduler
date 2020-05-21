@@ -1,9 +1,7 @@
 import React from "react";
-import Button from "../Button"
+import Button from "../Button";
 
 export default function Delete (props) {
-
-
   return (
     <main className="appointment__card appointment__card--confirm">
       <h1 className="text--semi-bold">{props.message}</h1>
@@ -19,4 +17,4 @@ export default function Delete (props) {
       </section>
     </main>
   );
-}
+};

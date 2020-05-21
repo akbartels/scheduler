@@ -1,13 +1,15 @@
 //EXTERNAL
 import React from "react";
 
-//INTERNAL
+//INTERNAL DOCS
 import Appointment from "components/Appointment/index";
 import DayList from "components/DayList";
-import {getAppointmentsForDay, getInterview, getInterviewerForDay} from "../helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
+//SELECTORS
+import {getAppointmentsForDay, getInterview, getInterviewerForDay} from "../helpers/selectors";
 
+//CSS
 import "components/Application.scss";
 
 
@@ -27,17 +29,16 @@ export default function Application(props) {
       <Appointment 
         key={appointment.id}
         id={appointment.id}
-        // time={appointment.time}
         interview={interview}
         interviewers={getInterviewerForDay(state, state.day)}
         bookInterview={bookInterview}
         cancelInterview={cancelInterview}
       />
-    )
-  })
+    );
+  });
   
 
-  //Application returns:
+  //Application Component returns:
   return (
     <main className="layout">
       <section className="sidebar">
@@ -69,6 +70,6 @@ export default function Application(props) {
       </section>
     </main>
   );
-}
+};
 
 

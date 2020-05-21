@@ -5,8 +5,9 @@ import Application from "components/Application";
 
 describe("Appointment", () => {
 
-  xit("renders without crashing", () => {
+  it("renders without crashing",  () => {
     render(<Application />);
+    
   });
   
 })
