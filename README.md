@@ -1,7 +1,7 @@
 # Interview Scheduler
 Interview Scheduler is a React application that allows users to book, cancel and edit interview appointments with an interviewer of their choosing.
 
-This was my first project using React, Storybook, Jest and Cypress and I definitely enjoyed it! All of these tools solidified just how valuable building applications in smaller modules/components can be and also the importance of adding testing into your regular routine and habits.
+This was my first project using React, Storybook, Jest and Cypress and I definitely enjoyed it! All of these tools solidified just how valuable building applications in smaller modules/components can be and also the importance of adding various testing strategies into your regular routine and habits.
 
 
 ## Setup
